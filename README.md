@@ -1,5 +1,19 @@
 # Project LOOP — AI Customer Feedback Intelligence Platform
 
+## 🌐 Live Deployment & Demo Access
+
+The application is deployed on Vercel with automated CI/CD and Neon PostgreSQL:
+
+🔗 **Production URL:** [https://loop-ai-feedback-platform-six.vercel.app/](https://loop-ai-feedback-platform-six.vercel.app/)
+
+### Demo Accounts (`password123`):
+| Role | Email | Access Level |
+|---|---|---|
+| **Admin** | `admin@demo.com` | Full administrative & workspace management access |
+| **Analyst** | `analyst@demo.com` | Ingestion, AI reclassification, and report generation |
+| **Viewer** | `viewer@demo.com` | Read-only dashboards, trends, and Ask LOOP |
+
+
 Project LOOP is an enterprise-grade customer feedback intelligence platform that aggregates, auto-classifies, and analyzes multi-channel user feedback in real time. It enables product and engineering teams to track sentiment trends, identify emerging theme spikes, query feedback via retrieval-grounded semantic Q&A (Ask LOOP), and generate automated Voice-of-Customer executive reports with strict multi-tenant isolation and role-based access control.
 
 ---

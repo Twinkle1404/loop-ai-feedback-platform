@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import React, { useState } from 'react'
 import { Badge } from '@/components/ui/Badge'
@@ -103,7 +103,7 @@ export function FeedbackTable({
   return (
     <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-xs overflow-hidden">
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full min-w-[700px] text-left border-collapse">
           <thead>
             <tr className="border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-800/30 text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">
               <th className="py-3.5 px-4 w-28">Sentiment</th>
@@ -239,7 +239,7 @@ export function FeedbackTable({
 
       {/* Pagination Footer */}
       {!loading && pagination.pages > 1 && (
-        <div className="p-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs text-zinc-500">
+        <div className="p-3 sm:p-4 border-t border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 text-center sm:text-left">
           <div>
             Showing Page <strong>{pagination.page}</strong> of <strong>{pagination.pages}</strong> ({pagination.total} total items)
           </div>

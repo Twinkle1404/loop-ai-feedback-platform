@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import React, { useEffect, ReactNode } from 'react'
 import { X } from 'lucide-react'
@@ -45,7 +45,7 @@ export function Modal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/50 backdrop-blur-xs transition-opacity animate-in fade-in"
@@ -54,11 +54,11 @@ export function Modal({
 
       {/* Modal Dialog */}
       <div
-        className={`relative w-full ${maxWidthClasses[maxWidth]} bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 z-10 overflow-hidden animate-in zoom-in-95`}
+        className={`relative w-full ${maxWidthClasses[maxWidth]} max-h-[90vh] flex flex-col bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 z-10 overflow-hidden animate-in zoom-in-95 my-auto`}
       >
-        <div className="flex items-center justify-between p-5 border-b border-zinc-100 dark:border-zinc-800">
+        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-zinc-100 dark:border-zinc-800 shrink-0">
           <div>
-            <h3 className="font-semibold text-lg text-zinc-900 dark:text-zinc-100">{title}</h3>
+            <h3 className="font-semibold text-base sm:text-lg text-zinc-900 dark:text-zinc-100">{title}</h3>
             {description && <p className="text-xs text-zinc-500 mt-0.5">{description}</p>}
           </div>
           <button
@@ -68,7 +68,7 @@ export function Modal({
             <X className="w-5 h-5" />
           </button>
         </div>
-        <div className="p-6">{children}</div>
+        <div className="p-4 sm:p-6 overflow-y-auto flex-1">{children}</div>
       </div>
     </div>
   )

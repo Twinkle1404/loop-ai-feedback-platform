@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+﻿import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { Prisma } from '@/generated/prisma/client'
 import { requirePermission, Permission } from '@/lib/auth'
@@ -21,7 +21,7 @@ function formatReportDate(d: Date): string {
 /**
  * POST /api/reports
  * Pre-computes real database statistics for a requested date range,
- * generates a Voice-of-Customer narrative via Claude using ONLY the computed facts,
+ * generates a Voice-of-Customer narrative via Claude / AI using ONLY the computed facts,
  * and persists the report to the database.
  * Requires CREATE_REPORT permission (ADMIN, ANALYST).
  */
@@ -141,6 +141,19 @@ export async function POST(req: NextRequest) {
       else if (group.sentiment === 'NEG') prevSentimentCounts.negative = group._count._all
     }
 
+    const percentNegative =
+      totalItems > 0
+        ? Math.round((sentimentCounts.negative / totalItems) * 100)
+        : 0
+    const prevTotal =
+      prevSentimentCounts.positive +
+      prevSentimentCounts.neutral +
+      prevSentimentCounts.negative
+    const prevPercentNegative =
+      prevTotal > 0
+        ? Math.round((prevSentimentCounts.negative / prevTotal) * 100)
+        : 0
+
     // Format top themes (sorted by count descending, top 10)
     const topThemes = themes
       .map((t) => ({
@@ -156,6 +169,7 @@ export async function POST(req: NextRequest) {
     const representativeFeedback = representativeFeedbackRecords.map((f) => ({
       feedbackId: f.id,
       quote: f.content,
+      content: f.content,
       channel: f.channel,
       sentiment: f.sentiment,
     }))
@@ -168,7 +182,7 @@ export async function POST(req: NextRequest) {
       representativeFeedback,
     }
 
-    // 5. Generate narrative via Claude using pre-computed statistics only
+    // 5. Generate narrative via Claude / AI using pre-computed statistics only
     const narrative = await generateReportNarrative(start, end, precomputedStats)
     if (!narrative) {
       return NextResponse.json(
@@ -191,11 +205,23 @@ export async function POST(req: NextRequest) {
             totalItems,
             sentiment: sentimentCounts,
             previousPeriodSentiment: prevSentimentCounts,
+            currentPeriod: {
+              total: totalItems,
+              positive: sentimentCounts.positive,
+              neutral: sentimentCounts.neutral,
+              negative: sentimentCounts.negative,
+              percentNegative,
+            },
+            previousPeriod: {
+              total: prevTotal,
+              positive: prevSentimentCounts.positive,
+              neutral: prevSentimentCounts.neutral,
+              negative: prevSentimentCounts.negative,
+              percentNegative: prevPercentNegative,
+            },
             topThemes,
-            representativeFeedback: representativeFeedback.map((q) => ({
-              feedbackId: q.feedbackId,
-              quote: q.quote,
-            })),
+            representativeFeedback,
+            representativeQuotes: representativeFeedback,
           },
           narrative,
         },

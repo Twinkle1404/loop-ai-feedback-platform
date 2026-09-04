@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import React, { useState } from 'react'
 import { Sparkles, Send, Lightbulb } from 'lucide-react'
@@ -35,9 +35,9 @@ export function QuestionInput({ onSubmit, isLoading }: QuestionInputProps) {
     <div className="space-y-4">
       {/* Input Box */}
       <form onSubmit={handleSubmit} className="relative">
-        <div className="flex items-center gap-2 p-2 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-2xl shadow-md shadow-zinc-200/50 dark:shadow-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-500 transition-all">
-          <div className="pl-3 text-indigo-600 dark:text-indigo-400">
-            <Sparkles className="w-5 h-5" />
+        <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-2xl shadow-md shadow-zinc-200/50 dark:shadow-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-500 transition-all">
+          <div className="pl-2 sm:pl-3 text-indigo-600 dark:text-indigo-400 shrink-0">
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
           <input
             type="text"
@@ -45,17 +45,18 @@ export function QuestionInput({ onSubmit, isLoading }: QuestionInputProps) {
             onChange={(e) => setQuestion(e.target.value)}
             disabled={isLoading}
             placeholder="Ask anything about your customer feedback in plain English..."
-            className="flex-1 px-2 py-2 text-sm bg-transparent border-none text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none"
+            className="flex-1 min-w-0 px-2 py-2 text-xs sm:text-sm bg-transparent border-none text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none"
           />
           <Button
             type="submit"
             isLoading={isLoading}
             disabled={!question.trim()}
             size="sm"
-            className="rounded-xl px-4 py-2"
-            icon={<Send className="w-4 h-4" />}
+            className="rounded-xl px-3 sm:px-4 py-2 shrink-0 text-xs sm:text-sm"
+            icon={<Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
           >
-            Ask LOOP
+            <span className="hidden sm:inline">Ask LOOP</span>
+            <span className="sm:hidden">Ask</span>
           </Button>
         </div>
       </form>

@@ -117,7 +117,7 @@ export default function AskPage() {
                 Retrieval-Grounded Feedback Intelligence
               </h3>
               <p className="text-xs text-zinc-500 mt-1.5 leading-relaxed">
-                Ask LOOP uses Google Gemini 1536-dimensional vector search to retrieve the most relevant feedback rows from PostgreSQL, then instructs Claude to formulate evidence-based answers with source citations.
+                Ask LOOP uses Google Gemini 768-dimensional vector search to retrieve the most relevant feedback rows from PostgreSQL, then instructs Claude to formulate evidence-based answers with source citations.
               </p>
             </div>
           </div>

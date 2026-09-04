@@ -69,8 +69,8 @@ export function ReportGenerator({ isOpen, onClose, onSuccess }: ReportGeneratorP
       title="Generate Voice-of-Customer Report"
       description="Claude AI calculates real workspace statistics and writes an executive digest"
     >
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="grid grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <div>
             <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
               Period Start Date

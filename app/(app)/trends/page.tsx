@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import React, { useState, useEffect } from 'react'
 import { TrendCard, ThemeTrendItem } from '@/components/trends/TrendCard'
@@ -66,7 +66,7 @@ export default function TrendsPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
           {/* Period Toggle */}
           <div className="bg-zinc-100 dark:bg-zinc-800 p-1 rounded-xl flex items-center gap-1">
             <button
@@ -111,7 +111,7 @@ export default function TrendsPage() {
       {/* Spike Alert Banner */}
       {spikes.length > 0 && !loading && (
         <div className="p-4 rounded-2xl bg-red-50 border border-red-200 dark:bg-red-950/40 dark:border-red-900/60 flex items-start gap-3.5 text-red-900 dark:text-red-200 shadow-xs">
-          <div className="p-2 rounded-xl bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300">
+          <div className="p-2 rounded-xl bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 shrink-0">
             <AlertTriangle className="w-5 h-5" />
           </div>
           <div>
@@ -128,7 +128,7 @@ export default function TrendsPage() {
 
       {/* Trends Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           <CardSkeleton />
           <CardSkeleton />
           <CardSkeleton />
@@ -143,7 +143,7 @@ export default function TrendsPage() {
           <p className="text-xs text-zinc-400 mt-1">Ingest more feedback items to populate automated theme trend clusters.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {trends.map((item, index) => {
             const id = item.themeId || item.id || item.name || `theme-${index}`
             return (

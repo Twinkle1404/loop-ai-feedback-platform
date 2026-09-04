@@ -91,64 +91,14 @@ export type AuthResult =
   | { success: true; user: AuthUser; response?: never }
   | { success: false; user?: never; response: NextResponse }
 
-export const Permission = {
-  VIEW_FEEDBACK: 'VIEW_FEEDBACK',
-  CREATE_FEEDBACK: 'CREATE_FEEDBACK',
-  IMPORT_FEEDBACK: 'IMPORT_FEEDBACK',
-  UPDATE_FEEDBACK: 'UPDATE_FEEDBACK',
-  DELETE_FEEDBACK: 'DELETE_FEEDBACK',
-  VIEW_THEMES: 'VIEW_THEMES',
-  MANAGE_THEMES: 'MANAGE_THEMES',
-  VIEW_REPORTS: 'VIEW_REPORTS',
-  CREATE_REPORT: 'CREATE_REPORT',
-  MANAGE_USERS: 'MANAGE_USERS',
-  MANAGE_WORKSPACE: 'MANAGE_WORKSPACE',
-} as const
+import {
+  Permission,
+  ROLE_PERMISSIONS,
+  hasPermission,
+} from '@/lib/navigation'
 
-export type Permission = (typeof Permission)[keyof typeof Permission]
-
-export const ROLE_PERMISSIONS: Record<Role, readonly Permission[]> = {
-  ADMIN: [
-    Permission.VIEW_FEEDBACK,
-    Permission.CREATE_FEEDBACK,
-    Permission.IMPORT_FEEDBACK,
-    Permission.UPDATE_FEEDBACK,
-    Permission.DELETE_FEEDBACK,
-    Permission.VIEW_THEMES,
-    Permission.MANAGE_THEMES,
-    Permission.VIEW_REPORTS,
-    Permission.CREATE_REPORT,
-    Permission.MANAGE_USERS,
-    Permission.MANAGE_WORKSPACE,
-  ],
-  ANALYST: [
-    Permission.VIEW_FEEDBACK,
-    Permission.CREATE_FEEDBACK,
-    Permission.IMPORT_FEEDBACK,
-    Permission.UPDATE_FEEDBACK,
-    Permission.VIEW_THEMES,
-    Permission.MANAGE_THEMES,
-    Permission.VIEW_REPORTS,
-    Permission.CREATE_REPORT,
-  ],
-  VIEWER: [
-    Permission.VIEW_FEEDBACK,
-    Permission.VIEW_THEMES,
-    Permission.VIEW_REPORTS,
-  ],
-}
-
-/* ==========================================================================
-   Reusable Server-Side Authorization Helpers
-   ========================================================================== */
-
-/**
- * Checks if a given role possesses the requested permission.
- */
-export function hasPermission(role: Role, permission: Permission): boolean {
-  const permissions = ROLE_PERMISSIONS[role]
-  return permissions ? permissions.includes(permission) : false
-}
+export { Permission, ROLE_PERMISSIONS, hasPermission }
+export type { Permission as PermissionType } from '@/lib/navigation'
 
 /**
  * Retrieves the authenticated user context from the active NextAuth session.

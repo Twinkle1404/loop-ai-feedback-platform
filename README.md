@@ -27,7 +27,7 @@ Project LOOP is an enterprise-grade customer feedback intelligence platform that
 - **ORM & Data Layer:** Prisma ORM 7 (`@prisma/adapter-pg` driver adapter)
 - **Authentication & RBAC:** NextAuth.js v4 (JWT Session strategy, bcryptjs password hashing)
 - **AI Classification & Narrative:** Anthropic Claude (`@anthropic-ai/sdk`, Claude 3.5 Haiku)
-- **Semantic Vector Embeddings:** Google Gemini (`@google/genai`, `gemini-embedding-001` 1536-D)
+- **Semantic Vector Embeddings:** Google Gemini (`@google/genai`, `gemini-embedding-001` 768-D)
 - **Data Validation:** Zod 4 (Strict schema validation across all API routes)
 - **CSV Ingestion:** PapaParse
 
@@ -106,7 +106,7 @@ npm start
 | `NEXTAUTH_SECRET` | NextAuth JWT encryption secret (min 32 characters) | Yes |
 | `NEXTAUTH_URL` | Application root URL (`http://localhost:3000` in dev) | Yes |
 | `ANTHROPIC_API_KEY` | Anthropic API key for Claude classification & narrative generation | Yes |
-| `GEMINI_API_KEY` | Google Gemini API key for 1536-dimensional vector embeddings | Yes |
+| `GEMINI_API_KEY` | Google Gemini API key for 768-dimensional vector embeddings | Yes |
 
 *Note: Real secrets must never be committed to Git. In production, configure these variables directly in your hosting provider's dashboard (e.g. Vercel Project Settings).*
 

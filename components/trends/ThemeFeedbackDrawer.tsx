@@ -67,30 +67,30 @@ export function ThemeFeedbackDrawer({
       />
 
       {/* Drawer Panel */}
-      <div className="relative w-full max-w-lg bg-white dark:bg-zinc-900 shadow-2xl border-l border-zinc-200 dark:border-zinc-800 z-10 flex flex-col h-full animate-in slide-in-from-right duration-200">
+      <div className="relative w-full sm:max-w-lg bg-white dark:bg-zinc-900 shadow-2xl border-l border-zinc-200 dark:border-zinc-800 z-10 flex flex-col h-full animate-in slide-in-from-right duration-200">
         {/* Header */}
-        <div className="p-6 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
-          <div>
+        <div className="p-4 sm:p-6 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between shrink-0">
+          <div className="min-w-0 pr-2">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+              <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
                 Theme Drill-Down
               </span>
-              <span className="text-xs text-zinc-400">• {total} total items</span>
+              <span className="text-[10px] sm:text-xs text-zinc-400">• {total} total items</span>
             </div>
-            <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mt-0.5">
+            <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 mt-0.5 truncate">
               {themeName}
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content List */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-3">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3">
           {loading ? (
             <div className="h-48 flex items-center justify-center">
               <Loader2 className="w-6 h-6 animate-spin text-indigo-600" />
